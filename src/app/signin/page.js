@@ -83,7 +83,7 @@ export default function SignIn() {
             <div className="flex w-full lg:w-[852px] justify-center items-center bg-[#F5F5F5] scale-[.80]">
 
                 <div className="max-w-3xl mx-auto p-6">
-                    <div className="font-montserrat text-lg lg:hidden text-center mb-4 w-full bg-black text-white p-2 rounded font-semibold relative">PROLAM 2024</div>
+                    <div className="font-montserrat text-lg lg:hidden text-center mb-4 w-full bg-black text-white p-2 rounded font-semibold relative">Fábrica Próspera @2024</div>
                     <div className="font-semibold text-3xl">Entrar com login</div>
                     <div className="text-base text-gray-600">Faça login na sua conta</div>
 
@@ -102,7 +102,7 @@ export default function SignIn() {
                                     type="text"
                                     // type="email"
                                     id="email"
-                                    placeholder="marcell.souza@prolam.com.br"
+                                    placeholder="rodrigo.martins"
                                     className="w-full mr-20 h-12 px-4 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400"
                                     value={username}
                                     onChange={(e) => usernameupdate(e.target.value)}
