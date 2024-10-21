@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import ChatOverview from '@/components/chart'
 import Sales from '@/components/sales'
+import Image from 'next/image';
+import colaboradorImage2 from '../image/colaboradores/rodrigo.martins.jpg'
 import {
   Card,
   CardContent,
@@ -20,6 +22,7 @@ export default function Principal() {
   const [nameTwo, setNameTwo] = useState('') // Estado para armazenar o nome do usuário
   const router = useRouter()
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
+  const colaboradorImage = '../image/colaboradores/rodrigo.martins.jpg'
 
   useEffect(() => {
     const token = sessionStorage.getItem('token')
@@ -67,15 +70,17 @@ export default function Principal() {
           {/* <div className="flex items-center gap-2 border-b py-2"> */}
           <div className="flex items-center gap-2">
             <Avatar className="w-10 h-10 rounded-full overflow-hidden">
-              <AvatarImage src="https://github.com/mllsouza.png" />
-              <AvatarFallback>DV</AvatarFallback>
+              {/* <AvatarImage src="https://github.com/mllsouza.png" /> */}
+              {/* <AvatarImage src={colaboradorImage} /> */}
+              <Image  src={colaboradorImage2} alt={`Logo`} width={119} height={30} />
+              {/* <AvatarFallback>DV</AvatarFallback> */}
             </Avatar>
             <div className="text-gray-400">
               <p className="text-sm sm:text-base">
                 {name} {nameTwo}
               </p>
               <span className="text-[12px] sm:text-sm">
-                marcell@9net.com.br
+                rodrigo.martins@gmail.com
               </span>
             </div>
           </div>

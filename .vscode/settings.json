@@ -23,6 +23,8 @@
 
   // ** Editor **
   "editor.tabSize": 2, // Define o tamanho da tabulação.
+  "editor.insertSpaces": true, // Garante que as tabulações sejam convertidas em espaços.
+  "editor.detectIndentation": false, // Impede que o VSCode detecte automaticamente a indentação e use a configuração definida.
   "useTabs": false,
   "[javascript]": {
     "editor.tabSize": 2
