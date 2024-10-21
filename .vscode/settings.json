@@ -1,0 +1,269 @@
+{
+  // ** workbench **
+  // "workbench.colorTheme": "Dracula",
+  "workbench.startupEditor": "newUntitledFile", // sem boas vindas vcide
+  "workbench.editor.labelFormat": "short", // nome da pasta na aba
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.tree.indent": 15, // espaço entre os icones das pastas ao lado
+  // ** Titulos - Stilos **
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#212dd7",
+    "titleBar.border": "#ebe8e8",
+    "titleBar.inactiveBackground": "#7c21d77c",
+    "titleBar.activeForeground": "#ebe8e8",
+    "statusBar.background": "#7C21D7",
+    "statusBar.debuggingBackground": "#7C21D7",
+    "statusBar.noFolderBackground": "#7C21D7",
+    "statussBar.prominentBackground": "#7C21D7",
+    "statusBar.foreground": "#ebe8e8"
+  },
+
+  // ** Zoom **
+  "window.zoomLevel": 0,
+
+  // ** Editor **
+  "editor.tabSize": 2, // Define o tamanho da tabulação.
+  "useTabs": false,
+  "[javascript]": {
+    "editor.tabSize": 2
+  },
+  "[python]": {
+    "editor.tabSize": 2
+  },
+  "editor.fontSize": 12, // Define o tamanho da fonte para o editor.
+  "editor.minimap.enabled": false,
+  "editor.fontFamily": "Fira Code", // Define a fonte para o editor.
+  "editor.fontLigatures": true, // ===  !=
+  "editor.renderLineHighlight": "gutter", // nao marca a linha toda maios
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.parameterHints.enabled": false, // dicas em cima do codigo
+  // "editor.rulers": [70, 100],
+  "editor.rulers": [80], // Adiciona uma régua vertical para ajudar a visualizar o limite de largura.
+
+  // Quebra de linha automática.
+  // "editor.wordWrap": "on",
+
+  "editor.formatOnSave": true, // Formata o código automaticamente ao salvar.
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // Usa o Prettier como o formatador padrão.
+  "editor.renderWhitespace": "boundary", // Mostra espaços em branco no código.
+
+  // ** Breadcrumbs **
+  "breadcrumbs.enabled": true, // caminho todo da pasta
+
+  // ** Files **
+  "files.autoSave": "afterDelay",
+  // "files.autoSave": "onWindowChange", // Salva automaticamente quando a janela do VS Code perde foco.
+  "files.trimTrailingWhitespace": true, // Remove espaços em branco finais ao salvar o arquivo.
+  "files.insertFinalNewline": true, // Insere uma nova linha no final dos arquivos.
+
+  // ** Explorer **
+  "explorer.compactFolders": false, // pasta debaixo de pasta
+
+  // ** Prettier **
+  "prettier.printWidth": 80, // Define o limite máximo de caracteres por linha.
+  "prettier.tabWidth": 2, // Define o número de espaços por tabulação.
+  "prettier.useTabs": false, // Define se deve usar tabs ou espaços.
+  "prettier.trailingComma": "es5", // Adiciona vírgulas no final de objetos e arrays.
+  "prettier.singleQuote": true, // Usa aspas simples em vez de aspas duplas.
+
+  // ** Eslint **
+  "eslint.format.enable": true, // Permite que o ESLint formate o código.
+  "eslint.alwaysShowStatus": true, // Sempre exibe o status do ESLint.
+
+  // ** Emmet **
+  "emmet.includeLanguages": {
+    "postcss": "css"
+  },
+
+  // ** Atomatizar a coreção das importações **
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "typescript.updateImportsOnFileMove.enabled": "never",
+
+  // ** Terminal **
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.profiles.windows": {
+    "Git Bash": {
+      "source": "Git Bash"
+    }
+  },
+  // ** Terminal Git Bash **
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+
+  "cSpell.words": [
+    "ademir",
+    "adriana",
+    "adriano",
+    "alan",
+    "alcantara",
+    "alexandre",
+    "alexsandro",
+    "allen",
+    "alves",
+    "anderson",
+    "andrade",
+    "andressa",
+    "Appstore",
+    "april",
+    "arquiadora",
+    "Artec",
+    "ARTEK",
+    "AVCB",
+    "ayssa",
+    "backdroup",
+    "beatriz",
+    "brian",
+    "Burguers",
+    "carlos",
+    "cavalcante",
+    "Cissa",
+    "cissolane",
+    "clsx",
+    "Codepen",
+    "contactora",
+    "contametro",
+    "contentshared",
+    "controlnet",
+    "cristhian",
+    "damiao",
+    "dantas",
+    "darkorange",
+    "darla",
+    "DDTHH",
+    "december",
+    "defaultusername",
+    "delcimiro",
+    "delecrode",
+    "descricao",
+    "dilvano",
+    "dispensor",
+    "Divisoria",
+    "duarte",
+    "edivaldo",
+    "eduardo",
+    "elizabeth",
+    "emerson",
+    "encrementa",
+    "Entrebotoes",
+    "errmsg",
+    "errormessage",
+    "esnext",
+    "Espacamento",
+    "evandro",
+    "Expedicao",
+    "Extrusao",
+    "february",
+    "fetc",
+    "flexbox",
+    "fluxocaixa",
+    "Formatteduser",
+    "formattedusername",
+    "Formattedusername",
+    "franciglaucy",
+    "franciney",
+    "geist",
+    "Gestao",
+    "getulio",
+    "gilberto",
+    "gino",
+    "github",
+    "Grafico",
+    "handlesubmit",
+    "haveadd",
+    "havedelete",
+    "haveedit",
+    "hyste",
+    "Hyster",
+    "Icart",
+    "icones",
+    "Idcard",
+    "ileno",
+    "indice",
+    "ingrid",
+    "IPAAM",
+    "isproceed",
+    "jackson",
+    "jailson",
+    "jair",
+    "janderson",
+    "january",
+    "jessica",
+    "jose",
+    "josenildo",
+    "juliane",
+    "july",
+    "june",
+    "karla",
+    "ketlen",
+    "larese",
+    "Larese",
+    "lindomar",
+    "livia",
+    "Logistica",
+    "luide",
+    "luiz",
+    "maiza",
+    "Manutencao",
+    "marcelo",
+    "matrim",
+    "mauricio",
+    "mecalor",
+    "michel",
+    "miranda",
+    "montserrat",
+    "NEXTAUTH",
+    "Nildo",
+    "november",
+    "october",
+    "olimpicosgemini",
+    "origs",
+    "oring",
+    "orings",
+    "paleteira",
+    "passwordupdate",
+    "pateleiras",
+    "Pepeu",
+    "permaco",
+    "Pessotto",
+    "polaseal",
+    "Posicionarlabel",
+    "progroup",
+    "Progroup",
+    "promisified",
+    "rayssa",
+    "Rayssa",
+    "regobj",
+    "responsibleproduction",
+    "roleaccess",
+    "sampaio",
+    "satiro",
+    "Scantech",
+    "SCANTECH",
+    "september",
+    "serverlogs",
+    "servico",
+    "Servico",
+    "shadcn",
+    "Shadcn",
+    "SIPAT",
+    "skatista",
+    "sonner",
+    "sublinks",
+    "Suzudo",
+    "TANDE",
+    "Twotone",
+    "ubiratan",
+    "Ungroup",
+    "usenavigate",
+    "Usergroup",
+    "usernameupdate",
+    "userNameupdate",
+    "userrole",
+    "utfs",
+    "valter",
+    "walpaper",
+    "wanderlei"
+  ]
+}
