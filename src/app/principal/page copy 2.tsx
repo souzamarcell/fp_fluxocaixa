@@ -104,11 +104,17 @@ export default function Principal() {
             </div>
           </div>
 
-          <h1 className="hidden lg:block">Fábrica Próspera - Fluxo de Caixa</h1>
-          <div className="text-[12px] sm:text-sm">
-            <h1 className="block lg:hidden">Fluxo</h1>
-            <h2 className="block lg:hidden"> de </h2>
-            <h2 className="block lg:hidden"> Caixa </h2>
+          {/* Desktop */}
+          <div className="min-h-screen">
+            <div className="hidden lg:flex text-gray-400 justify-center items-center">
+              <h1>Fábrica Próspera - Fluxo de Caixa</h1>
+            </div>
+          </div>
+
+          {/* celular */}
+          <div className="lg:hidden">
+            <h1 className="text-[12px] sm:text-sm">Fábrica Próspera</h1>
+            <h1 className="text-[12px] sm:text-sm">Fluxo de Caixa</h1>
           </div>
 
           <div className="text-[12px] sm:text-sm text-gray-400">
@@ -164,9 +170,7 @@ export default function Principal() {
         {/* Conteúdo principal */}
         <main style={{ flex: 1, padding: '1rem' }}>
           <h2>Bem-vindo ao Dashboard</h2>
-          <div className="text-white">.</div>
-          <div>Fábrica Próspera</div>
-          <div>Fluxo de Caixa</div>
+          <p>Aqui vai o conteúdo principal da sua aplicação.</p>
         </main>
       </div>
     </div>
