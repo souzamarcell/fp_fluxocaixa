@@ -2,9 +2,19 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
+import ChatOverview from '@/components/chart'
+import Sales from '@/components/sales'
 import Image from 'next/image'
 import colaboradorImage2 from '../image/colaboradores/rodrigo.martins.jpg'
-import { Avatar } from '@radix-ui/react-avatar'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
+import { DollarSign, Aperture, Users } from 'lucide-react'
 
 export default function Principal() {
   const [isLoading, setIsLoading] = useState(true) // Estado de carregamento
@@ -12,12 +22,7 @@ export default function Principal() {
   const [nameTwo, setNameTwo] = useState('') // Estado para armazenar o nome do usuário
   const router = useRouter()
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
-
-  // Estado e useEffect para atualizar a data e hora
-  const [currentDateTime, setCurrentDateTime] = useState({
-    date: '',
-    time: '',
-  })
+  const colaboradorImage = '../image/colaboradores/rodrigo.martins.jpg'
 
   useEffect(() => {
     const token = sessionStorage.getItem('token')
@@ -25,7 +30,7 @@ export default function Principal() {
     const storedNameTwo = sessionStorage.getItem('nameTwo')
 
     if (token === '311@#') {
-      console.log('Validou token: ' + token)
+      console.log(' Validou token: ' + token)
       setName(storedName || '') // Se o nome for null, atribui uma string vazia
       setNameTwo(storedNameTwo || '') // Define o nome do usuário no estado
       setIsLoading(false) // Token válido, podemos parar de carregar e mostrar a página
@@ -38,40 +43,39 @@ export default function Principal() {
     }
   }, [router])
 
-  useEffect(() => {
-    const updateDateTime = () => {
-      const now = new Date()
-      const formattedDate = now.toLocaleDateString('pt-BR', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-      })
-      const formattedTime = now.toLocaleTimeString('pt-BR', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-      })
-
-      setCurrentDateTime({
-        date: formattedDate,
-        time: formattedTime,
-      })
-    }
-
-    updateDateTime() // Atualiza imediatamente ao montar o componente
-    const intervalId = setInterval(updateDateTime, 1000) // Atualiza a cada segundo
-
-    return () => clearInterval(intervalId) // Limpa o intervalo quando o componente for desmontado
-  }, [])
-
   // Se estiver carregando, não renderiza nada até que a verificação do token seja feita
   if (isLoading) {
     return null
+    // return <div>
+    //   carregando
+    // </div>
   }
 
   const toggleSubMenu = () => {
     setIsSubMenuOpen(!isSubMenuOpen)
   }
+
+  const [currentDateTime, setCurrentDateTime] = useState({
+    date: '',
+    time: '',
+  })
+
+  const now = new Date()
+  const formattedDate = now.toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  })
+  const formattedTime = now.toLocaleTimeString('pt-BR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  })
+
+  setCurrentDateTime({
+    date: formattedDate,
+    time: formattedTime,
+  })
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
@@ -85,14 +89,18 @@ export default function Principal() {
         }}
       >
         <article className="flex justify-between items-center w-full">
+          {/* <div className="flex items-center gap-2 border-b py-2"> */}
           <div className="flex items-center gap-2">
             <Avatar className="w-10 h-10 rounded-full overflow-hidden">
+              {/* <AvatarImage src="https://github.com/mllsouza.png" /> */}
+              {/* <AvatarImage src={colaboradorImage} /> */}
               <Image
                 src={colaboradorImage2}
                 alt={`Logo`}
                 width={119}
                 height={30}
               />
+              {/* <AvatarFallback>DV</AvatarFallback> */}
             </Avatar>
             <div className="text-gray-400">
               <p className="text-sm sm:text-base">
@@ -107,6 +115,8 @@ export default function Principal() {
           <h1>Fábrica Próspera - Fluxo de Caixa</h1>
 
           <div>
+            {/* <div>21/10/2024</div>
+            <div>11:05</div> */}
             <div>{currentDateTime.date}</div>
             <div>{currentDateTime.time}</div>
           </div>
@@ -124,6 +134,7 @@ export default function Principal() {
             padding: '1rem',
           }}
         >
+          {/* <ul style={{ listStyleType: 'none', padding: 0 }}> */}
           <ul
             style={{ listStyleType: 'none', padding: 0, fontSize: '0.875rem' }}
           >
