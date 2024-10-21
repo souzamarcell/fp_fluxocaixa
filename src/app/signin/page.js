@@ -2,7 +2,7 @@
 import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import logo from '../image/prolam.png'
+import logo from '../image/fabrica.png'
 import { ValidateLogin } from '../utility/validateLogin'
 import { useRouter } from 'next/navigation'
 
