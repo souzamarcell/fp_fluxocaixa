@@ -6,14 +6,33 @@ import Image from 'next/image'
 import colaboradorImage2 from '../image/colaboradores/rodrigo.martins.jpg'
 import { Avatar } from '@radix-ui/react-avatar'
 
+type MenuKeys_a = 'fornecedores' | 'materiaPrima' | 'equipamento' | 'servicos'
+type MenuKeys_b = 'lancamentos'
+type MenuKeys_c = 'despesasCustos'
+
+
 export default function Principal() {
   const [isLoading, setIsLoading] = useState(true) // Estado de carregamento
   const [name, setName] = useState('') // Estado para armazenar o nome do usuário
   const [nameTwo, setNameTwo] = useState('') // Estado para armazenar o nome do usuário
   const router = useRouter()
-  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
 
-  // Estado e useEffect para atualizar a data e hora
+  // Estado para controlar submenus
+  const [openSubMenus_a, setopenSubMenus_a] = useState({
+    fornecedores: false,
+    materiaPrima: false,
+    equipamento: false,
+    servicos: false,
+  })
+
+  const [openSubMenus_b, setopenSubMenus_b] = useState({
+    lancamentos: false,
+  })
+
+  const [openSubMenus_c, setopenSubMenus_c] = useState({
+    despesasCustos: false,
+  })
+
   const [currentDateTime, setCurrentDateTime] = useState({
     date: '',
     time: '',
@@ -64,13 +83,29 @@ export default function Principal() {
     return () => clearInterval(intervalId) // Limpa o intervalo quando o componente for desmontado
   }, [])
 
-  // Se estiver carregando, não renderiza nada até que a verificação do token seja feita
   if (isLoading) {
     return null
   }
 
-  const toggleSubMenu = () => {
-    setIsSubMenuOpen(!isSubMenuOpen)
+  const toggleSubMenu_a = (menu: MenuKeys_a) => {
+    setopenSubMenus_a((prev) => ({
+      ...prev,
+      [menu]: !prev[menu],
+    }))
+  }
+
+  const toggleSubMenu_b = (menu: MenuKeys_b) => {
+    setopenSubMenus_b((prev) => ({
+      ...prev,
+      [menu]: !prev[menu],
+    }))
+  }
+
+  const toggleSubMenu_c = (menu: MenuKeys_c) => {
+    setopenSubMenus_c((prev) => ({
+      ...prev,
+      [menu]: !prev[menu],
+    }))
   }
 
   return (
@@ -118,7 +153,6 @@ export default function Principal() {
         </article>
       </header>
 
-      {/* Conteúdo principal */}
       <div style={{ display: 'flex', flex: 1 }}>
         {/* Menu lateral */}
         <nav
@@ -132,14 +166,15 @@ export default function Principal() {
           <ul
             style={{ listStyleType: 'none', padding: 0, fontSize: '0.875rem' }}
           >
+            {/* *** Fornecedores *** */}
             <li style={{ margin: '1rem 0' }}>
               <div
-                onClick={toggleSubMenu}
+                onClick={() => toggleSubMenu_a('fornecedores')}
                 style={{ cursor: 'pointer', userSelect: 'none' }}
               >
                 Fornecedores
               </div>
-              {isSubMenuOpen && (
+              {openSubMenus_a.fornecedores && (
                 <ul
                   style={{
                     listStyleType: 'none',
@@ -147,14 +182,155 @@ export default function Principal() {
                     marginTop: '0.5rem',
                   }}
                 >
-                  <li style={{ margin: '0.5rem 0' }}>Matéria Prima</li>
-                  <li style={{ margin: '0.5rem 0' }}>Equipamento</li>
-                  <li style={{ margin: '0.5rem 0' }}>Serviços</li>
+                  <li style={{ margin: '0.5rem 0' }}>
+                    <div
+                      onClick={() => toggleSubMenu_a('materiaPrima')}
+                      style={{ cursor: 'pointer', userSelect: 'none' }}
+                    >
+                      Matéria Prima
+                    </div>
+                    {openSubMenus_a.materiaPrima && (
+                      <ul
+                        style={{
+                          listStyleType: 'none',
+                          paddingLeft: '1rem',
+                          marginTop: '0.5rem',
+                        }}
+                      >
+                        <li style={{ margin: '0.5rem 0' }}>
+                          Ferramentas do Projeto
+                        </li>
+                        <li style={{ margin: '0.5rem 0' }}>Fornecedor 1</li>
+                        <li style={{ margin: '0.5rem 0' }}>Fornecedor 2</li>
+                        <li style={{ margin: '0.5rem 0' }}>Fornecedor 3</li>
+                        <li style={{ margin: '0.5rem 0' }}>Fornecedor 4</li>
+                        <li style={{ margin: '0.5rem 0' }}>Fornecedor 5</li>
+                        <li style={{ margin: '0.5rem 0' }}>
+                          Total Fornecedores
+                        </li>
+                      </ul>
+                    )}
+                  </li>
+                  <li style={{ margin: '0.5rem 0' }}>
+                    <div
+                      onClick={() => toggleSubMenu_a('equipamento')}
+                      style={{ cursor: 'pointer', userSelect: 'none' }}
+                    >
+                      Equipamento
+                    </div>
+                    {openSubMenus_a.equipamento && (
+                      <ul
+                        style={{
+                          listStyleType: 'none',
+                          paddingLeft: '1rem',
+                          marginTop: '0.5rem',
+                        }}
+                      >
+                        <li style={{ margin: '0.5rem 0' }}>Fornecedor A</li>
+                        <li style={{ margin: '0.5rem 0' }}>Fornecedor B</li>
+                        <li style={{ margin: '0.5rem 0' }}>Fornecedor C</li>
+                        <li style={{ margin: '0.5rem 0' }}>Fornecedor D</li>
+                        <li style={{ margin: '0.5rem 0' }}>
+                          Total Fornecedores
+                        </li>
+                      </ul>
+                    )}
+                  </li>
+                  <li style={{ margin: '0.5rem 0' }}>
+                    <div
+                      onClick={() => toggleSubMenu_a('servicos')}
+                      style={{ cursor: 'pointer', userSelect: 'none' }}
+                    >
+                      Serviços
+                    </div>
+                    {openSubMenus_a.servicos && (
+                      <ul
+                        style={{
+                          listStyleType: 'none',
+                          paddingLeft: '1rem',
+                          marginTop: '0.5rem',
+                        }}
+                      >
+                        <li style={{ margin: '0.5rem 0' }}>Serviço 1</li>
+                        <li style={{ margin: '0.5rem 0' }}>Serviço 2</li>
+                        <li style={{ margin: '0.5rem 0' }}>Serviço 3</li>
+                        <li style={{ margin: '0.5rem 0' }}>Serviço 4</li>
+                        <li style={{ margin: '0.5rem 0' }}>Total Serviços</li>
+                      </ul>
+                    )}
+                  </li>
                 </ul>
               )}
             </li>
-            <li style={{ margin: '1rem 0' }}>Lançamentos Entradas</li>
-            <li style={{ margin: '1rem 0' }}>Despesas / Custos Fixos</li>
+            {/* *** Lançamentos Entradas *** */}
+            <li style={{ margin: '1rem 0' }}>
+              <div
+                onClick={() => toggleSubMenu_b('lancamentos')}
+                style={{ cursor: 'pointer', userSelect: 'none' }}
+              >
+                Lançamentos Entradas
+              </div>
+              {openSubMenus_b.lancamentos && (
+                <ul
+                  style={{
+                    listStyleType: 'none',
+                    paddingLeft: '1rem',
+                    marginTop: '0.5rem',
+                  }}
+                >
+                  <li style={{ margin: '0.5rem 0' }}>Projeto1</li>
+                  <li style={{ margin: '0.5rem 0' }}>Setor B</li>
+                  <li style={{ margin: '0.5rem 0' }}>Setor C</li>
+                  <li style={{ margin: '0.5rem 0' }}>Ferias</li>
+                  <li style={{ margin: '0.5rem 0' }}>Internet</li>
+                  <li style={{ margin: '0.5rem 0' }}>Revendas</li>
+                  <li style={{ margin: '0.5rem 0' }}>Total Entradas</li>
+                </ul>
+              )}
+            </li>
+            {/* *** Despesas / Custos Fixos *** */}
+            <li style={{ margin: '1rem 0' }}>
+              <div
+                onClick={() => toggleSubMenu_c('despesasCustos')}
+                style={{ cursor: 'pointer', userSelect: 'none' }}
+              >
+                Despesas / Custos Fixos
+              </div>
+              {openSubMenus_c.despesasCustos && (
+                <ul
+                  style={{
+                    listStyleType: 'none',
+                    paddingLeft: '1rem',
+                    marginTop: '0.5rem',
+                  }}
+                >
+                  <li style={{ margin: '0.5rem 0' }}>Salário Adiantamento</li>
+                  <li style={{ margin: '0.5rem 0' }}>Obrigações e Enc Sociais</li>
+                  <li style={{ margin: '0.5rem 0' }}>Água</li>
+                  <li style={{ margin: '0.5rem 0' }}>Energia Elétrica</li>
+                  <li style={{ margin: '0.5rem 0' }}>Telefone / Internet</li>
+                  <li style={{ margin: '0.5rem 0' }}>Aluguel / IPTU / Cond</li>
+                  <li style={{ margin: '0.5rem 0' }}>Material Esc. Mercado</li>
+                  <li style={{ margin: '0.5rem 0' }}>Gás</li>
+                  <li style={{ margin: '0.5rem 0' }}>Vale Refeição</li>
+                  <li style={{ margin: '0.5rem 0' }}>Vale Transporte</li>
+                  <li style={{ margin: '0.5rem 0' }}>Sistemas</li>
+                  <li style={{ margin: '0.5rem 0' }}>Sindicato + Med</li>
+                  <li style={{ margin: '0.5rem 0' }}>Contador</li>
+                  <li style={{ margin: '0.5rem 0' }}>Estacionamento</li>
+                  <li style={{ margin: '0.5rem 0' }}>Despesas Bancárias</li>
+                  <li style={{ margin: '0.5rem 0' }}>pró-labore</li>
+                  <li style={{ margin: '0.5rem 0' }}>Prêmios Confr</li>
+                  <li style={{ margin: '0.5rem 0' }}>Treinamentos</li>
+                  <li style={{ margin: '0.5rem 0' }}>Seguros</li>
+                  <li style={{ margin: '0.5rem 0' }}>Limpeza</li>
+                  <li style={{ margin: '0.5rem 0' }}>Reservas</li>
+                  <li style={{ margin: '0.5rem 0' }}>Jurídico</li>
+                  <li style={{ margin: '0.5rem 0' }}>Total Despesas</li>
+                </ul>
+              )}
+            </li>
+            {/* **************** */}
             <li style={{ margin: '1rem 0' }}>Impostos e Comissões</li>
             <li style={{ margin: '1rem 0' }}>Financiamentos</li>
             <li style={{ margin: '1rem 0' }}>Relatórios</li>
