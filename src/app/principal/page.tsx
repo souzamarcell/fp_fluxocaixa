@@ -339,7 +339,7 @@ export default function Principal() {
 
         {/* Conteúdo principal */}
         <main style={{ flex: 1, padding: '1rem' }}>
-          <h2>Bem-vindo ao Dashboard</h2>
+          <h2>Bem-vindo ao Dashboard (1.9)</h2>
           <div className="text-white">.</div>
           <div>Fábrica Próspera</div>
           <div>Fluxo de Caixa</div>
