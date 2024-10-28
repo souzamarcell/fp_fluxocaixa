@@ -5,18 +5,17 @@ import { toast } from 'react-toastify'
 import Image from 'next/image'
 import colaboradorImage2 from '../image/colaboradores/rodrigo.martins.jpg'
 import { Avatar } from '@radix-ui/react-avatar'
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 type MenuKeys_a = 'fornecedores' | 'materiaPrima' | 'equipamento' | 'servicos'
 type MenuKeys_b = 'lancamentos'
 type MenuKeys_c = 'despesasCustos'
+
 
 export default function Principal() {
   const [isLoading, setIsLoading] = useState(true) // Estado de carregamento
   const [name, setName] = useState('') // Estado para armazenar o nome do usuário
   const [nameTwo, setNameTwo] = useState('') // Estado para armazenar o nome do usuário
   const router = useRouter()
-  const [isNavOpen, setIsNavOpen] = useState(true)
 
   // Estado para controlar submenus
   const [openSubMenus_a, setopenSubMenus_a] = useState({
@@ -86,10 +85,6 @@ export default function Principal() {
 
   if (isLoading) {
     return null
-  }
-
-  const toggleNav = () => {
-    setIsNavOpen((prev) => !prev)
   }
 
   const toggleSubMenu_a = (menu: MenuKeys_a) => {
@@ -162,12 +157,10 @@ export default function Principal() {
         {/* Menu lateral */}
         <nav
           style={{
-            width: isNavOpen ? '200px' : '0', // Controla a largura do menu
+            width: '200px',
             backgroundColor: '#333',
             color: 'white',
-            padding: isNavOpen ? '1rem' : '0', // Remove padding quando fechado
-            overflow: 'hidden', // Esconde o conteúdo quando o menu está fechado
-            transition: 'width 0.3s ease', // Adiciona animação suave
+            padding: '1rem',
           }}
         >
           <ul
@@ -312,9 +305,7 @@ export default function Principal() {
                   }}
                 >
                   <li style={{ margin: '0.5rem 0' }}>Salário Adiantamento</li>
-                  <li style={{ margin: '0.5rem 0' }}>
-                    Obrigações e Enc Sociais
-                  </li>
+                  <li style={{ margin: '0.5rem 0' }}>Obrigações e Enc Sociais</li>
                   <li style={{ margin: '0.5rem 0' }}>Água</li>
                   <li style={{ margin: '0.5rem 0' }}>Energia Elétrica</li>
                   <li style={{ margin: '0.5rem 0' }}>Telefone / Internet</li>
@@ -348,26 +339,7 @@ export default function Principal() {
 
         {/* Conteúdo principal */}
         <main style={{ flex: 1, padding: '1rem' }}>
-          <button
-            onClick={toggleNav}
-            style={{
-              // position: 'absolute',
-
-              // Muda a posição dependendo do estado
-              // left: isNavOpen ? '200px' : '0',
-
-              top: '1rem',
-              backgroundColor: '#e7cee1',
-              color: 'white',
-              border: 'none',
-              cursor: 'pointer',
-              zIndex: 1000,
-            }}
-          >
-            {isNavOpen ? <FaChevronLeft /> : <FaChevronRight />}
-          </button>
-
-          <h2>Bem-vindo ao Dashboard (2.0)</h2>
+          <h2>Bem-vindo ao Dashboard (1.9)</h2>
           <div className="text-white">.</div>
           <div>Fábrica Próspera</div>
           <div>Fluxo de Caixa</div>
