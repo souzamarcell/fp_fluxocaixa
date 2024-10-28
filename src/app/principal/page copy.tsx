@@ -7,7 +7,7 @@ import colaboradorImage2 from '../image/colaboradores/rodrigo.martins.jpg'
 import { Avatar } from '@radix-ui/react-avatar'
 
 type MenuKeys = 'fornecedores' | 'materiaPrima' | 'equipamento' | 'servicos'
-type MenuKeysLan = 'lancamentos | Projeto1 | Projeto2 | Projeto3'
+type MenuKeysLan = 'lancamentos' | 'Projeto1' | 'Projeto2' | 'Projeto3'
 
 export default function Principal() {
   const [isLoading, setIsLoading] = useState(true) // Estado de carregamento
@@ -84,7 +84,7 @@ export default function Principal() {
   if (isLoading) {
     return null
   }
-  
+
   const toggleSubMenu = (menu: MenuKeys) => {
     setOpenSubMenus((prev) => ({
       ...prev,
