@@ -6,6 +6,8 @@ import Image from 'next/image'
 import colaboradorImage2 from '../image/colaboradores/rodrigo.martins.jpg'
 import { Avatar } from '@radix-ui/react-avatar'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import Link from 'next/link'
+import { Header } from '@/components/header'
 
 type MenuKeys_a = 'fornecedores' | 'materiaPrima' | 'equipamento' | 'servicos'
 type MenuKeys_b = 'lancamentos'
@@ -116,7 +118,10 @@ export default function Principal() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       {/* Cabeçalho */}
-      <header
+      <Header>
+
+      </Header>
+      {/* <header
         style={{
           backgroundColor: '#282c34',
           color: 'white',
@@ -156,7 +161,7 @@ export default function Principal() {
             <div>{currentDateTime.time}</div>
           </div>
         </article>
-      </header>
+      </header> */}
 
       <div style={{ display: 'flex', flex: 1 }}>
         {/* Menu lateral */}
@@ -197,24 +202,19 @@ export default function Principal() {
                       Matéria Prima
                     </div>
                     {openSubMenus_a.materiaPrima && (
-                      <ul
-                        style={{
-                          listStyleType: 'none',
-                          paddingLeft: '1rem',
-                          marginTop: '0.5rem',
-                        }}
-                      >
-                        <li style={{ margin: '0.5rem 0' }}>
-                          Ferramentas do Projeto
+                      <ul className="list-none pl-4 mt-2">
+                        <li className="my-2">
+                          <Link href="/principal/materiaPrima">
+                            Novo Fornecedor
+                          </Link>
                         </li>
-                        <li style={{ margin: '0.5rem 0' }}>Fornecedor 1</li>
-                        <li style={{ margin: '0.5rem 0' }}>Fornecedor 2</li>
-                        <li style={{ margin: '0.5rem 0' }}>Fornecedor 3</li>
-                        <li style={{ margin: '0.5rem 0' }}>Fornecedor 4</li>
-                        <li style={{ margin: '0.5rem 0' }}>Fornecedor 5</li>
-                        <li style={{ margin: '0.5rem 0' }}>
-                          Total Fornecedores
-                        </li>
+                        <li className="my-2">Ferramentas do Projeto</li>
+                        <li className="my-2">Fornecedor 1</li>
+                        <li className="my-2">Fornecedor 2</li>
+                        <li className="my-2">Fornecedor 3</li>
+                        <li className="my-2">Fornecedor 4</li>
+                        <li className="my-2">Fornecedor 5</li>
+                        <li className="my-2">Total Fornecedores</li>
                       </ul>
                     )}
                   </li>
