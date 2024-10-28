@@ -20,9 +20,9 @@ const users = [
     "temp": ""
   },
   {
-    "id": "rodrigo.martins",
-    "name": "Rodrigo Martins",
-    "email": "rodrigo.martins@gmail.com",
+    "id": "rodrigo.virgilio",
+    "name": "Rodrigo Virgilio",
+    "email": "rodrigo.virgilio@gmail.com",
     "password": "Rodrigo@73",
     "phoneMobile": "(11)981",
     "role": "admin",
@@ -100,7 +100,7 @@ export default function SignIn() {
         <div className="max-w-3xl mx-auto p-6">
           <div className="font-montserrat text-lg lg:hidden text-center mb-4 w-full bg-black text-white p-2 rounded font-semibold relative">Fábrica Próspera @2024</div>
 
-          <div className="font-semibold text-3xl">Entrar com login 1.10.3</div>
+          <div className="font-semibold text-3xl">Entrar com login 1.10.4</div>
 
           <div className="text-base text-gray-600">Faça login na sua conta</div>
           <div className="mt-6 bg-white rounded-lg p-6">

@@ -2,9 +2,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
-import Image from 'next/image'
-import colaboradorImage2 from '../image/colaboradores/rodrigo.martins.jpg'
-import { Avatar } from '@radix-ui/react-avatar'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import Link from 'next/link'
 import { Header } from '@/components/header'
@@ -15,10 +12,40 @@ type MenuKeys_c = 'despesasCustos'
 
 export default function Principal() {
   const [isLoading, setIsLoading] = useState(true) // Estado de carregamento
-  const [name, setName] = useState('') // Estado para armazenar o nome do usuário
-  const [nameTwo, setNameTwo] = useState('') // Estado para armazenar o nome do usuário
+  // const [name, setName] = useState('') // Estado para armazenar o nome do usuário
+  // const [nameTwo, setNameTwo] = useState('') // Estado para armazenar o nome do usuário
   const router = useRouter()
   const [isNavOpen, setIsNavOpen] = useState(true)
+
+  const [nomeFornecedor, setNomeFornecedor] = useState('') // Estado para armazenar o nome do fornecedor
+  const [fornecedores, setFornecedores] = useState<string[]>([]) // Estado para armazenar a lista de fornecedores
+
+  useEffect(() => {
+    // Lê do localStorage ao montar o componente
+    const bdMateriaPrima = 'materiaPrima'
+    const fornecedoresArmazenados = localStorage.getItem(bdMateriaPrima)
+
+    // Se houver fornecedores armazenados, atualiza o estado
+    if (fornecedoresArmazenados) {
+      setFornecedores(JSON.parse(fornecedoresArmazenados))
+    }
+  }, [])
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault() // Previne o envio padrão do formulário
+
+    const bdMateriaPrima = 'materiaPrima'
+
+    // Atualiza a lista de fornecedores
+    const novosFornecedores = [...fornecedores, nomeFornecedor]
+    setFornecedores(novosFornecedores)
+
+    // Armazena no localStorage
+    localStorage.setItem(bdMateriaPrima, JSON.stringify(novosFornecedores))
+
+    // Limpa o campo após o envio
+    setNomeFornecedor('')
+  }
 
   // Estado para controlar submenus
   const [openSubMenus_a, setopenSubMenus_a] = useState({
@@ -36,20 +63,15 @@ export default function Principal() {
     despesasCustos: false,
   })
 
-  const [currentDateTime, setCurrentDateTime] = useState({
-    date: '',
-    time: '',
-  })
-
   useEffect(() => {
     const token = sessionStorage.getItem('token')
-    const storedName = sessionStorage.getItem('name')
-    const storedNameTwo = sessionStorage.getItem('nameTwo')
+    // const storedName = sessionStorage.getItem('name')
+    // const storedNameTwo = sessionStorage.getItem('nameTwo')
 
     if (token === '311@#') {
       console.log('Validou token: ' + token)
-      setName(storedName || '') // Se o nome for null, atribui uma string vazia
-      setNameTwo(storedNameTwo || '') // Define o nome do usuário no estado
+      // setName(storedName || '') // Se o nome for null, atribui uma string vazia
+      // setNameTwo(storedNameTwo || '') // Define o nome do usuário no estado
       setIsLoading(false) // Token válido, podemos parar de carregar e mostrar a página
     } else {
       sessionStorage.clear()
@@ -59,32 +81,6 @@ export default function Principal() {
       toast.error('Favor fazer login!')
     }
   }, [router])
-
-  useEffect(() => {
-    const updateDateTime = () => {
-      const now = new Date()
-      const formattedDate = now.toLocaleDateString('pt-BR', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-      })
-      const formattedTime = now.toLocaleTimeString('pt-BR', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-      })
-
-      setCurrentDateTime({
-        date: formattedDate,
-        time: formattedTime,
-      })
-    }
-
-    updateDateTime() // Atualiza imediatamente ao montar o componente
-    const intervalId = setInterval(updateDateTime, 1000) // Atualiza a cada segundo
-
-    return () => clearInterval(intervalId) // Limpa o intervalo quando o componente for desmontado
-  }, [])
 
   if (isLoading) {
     return null
@@ -118,9 +114,7 @@ export default function Principal() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       {/* Cabeçalho */}
-      <Header>
-
-      </Header>
+      <Header></Header>
       {/* <header
         style={{
           backgroundColor: '#282c34',
@@ -208,12 +202,19 @@ export default function Principal() {
                             Novo Fornecedor
                           </Link>
                         </li>
+                        {fornecedores.map((fornecedor, index) => (
+                          <li key={index} className="my-2">
+                            {fornecedor}
+                          </li> // Renderiza a lista de fornecedores
+                        ))}
+                        {/*
                         <li className="my-2">Ferramentas do Projeto</li>
                         <li className="my-2">Fornecedor 1</li>
                         <li className="my-2">Fornecedor 2</li>
                         <li className="my-2">Fornecedor 3</li>
                         <li className="my-2">Fornecedor 4</li>
                         <li className="my-2">Fornecedor 5</li>
+                         */}
                         <li className="my-2">Total Fornecedores</li>
                       </ul>
                     )}

@@ -85,7 +85,7 @@ export function Header() {
                 {name} {nameTwo}
               </p>
               <span className="text-[12px] sm:text-sm">
-                rodrigo.martins@gmail.com
+                rodrigo.virgilio@gmail.com
               </span>
             </div>
           </div>
