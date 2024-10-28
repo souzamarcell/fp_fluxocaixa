@@ -2,3 +2,9 @@
 //   "extends": ["next/core-web-vitals", "next/typescript"],
 //   "editor.tabSize": 2
 // }
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-unused-vars": "warn"
+  }
+}
