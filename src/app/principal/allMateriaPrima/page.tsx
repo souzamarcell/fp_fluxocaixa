@@ -1,6 +1,7 @@
 'use client'
-import { useSearchParams } from 'next/navigation'
 import { Header } from '@/components/header'
+import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 
 export default function AllMateriaPrima() {
   const searchParams = useSearchParams()
@@ -9,7 +10,9 @@ export default function AllMateriaPrima() {
   return (
     <div className="p-4">
       <Header />
-      <p>Fornecedor: {fornecedor}</p>
+      <Suspense fallback={<p>Carregando...</p>}>
+        <p>Fornecedor: {fornecedor}</p>
+      </Suspense>
     </div>
   )
 }
