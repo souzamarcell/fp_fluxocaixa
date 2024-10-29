@@ -5,6 +5,8 @@ import { toast } from 'react-toastify'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import Link from 'next/link'
 import { Header } from '@/components/header'
+import { FaTools } from 'react-icons/fa'
+
 
 type MenuKeys_a = 'fornecedores' | 'materiaPrima' | 'equipamento' | 'servicos'
 type MenuKeys_b = 'lancamentos'
@@ -15,10 +17,13 @@ export default function Principal() {
   // const [name, setName] = useState('') // Estado para armazenar o nome do usuário
   // const [nameTwo, setNameTwo] = useState('') // Estado para armazenar o nome do usuário
   const router = useRouter()
-  const [isNavOpen, setIsNavOpen] = useState(true)
+  const [isNavOpen, setIsNavOpen] = useState(true) // true / false
 
   const [nomeFornecedor, setNomeFornecedor] = useState('') // Estado para armazenar o nome do fornecedor
   const [fornecedores, setFornecedores] = useState<string[]>([]) // Estado para armazenar a lista de fornecedores
+
+  const [isFornecedoresActive, setIsFornecedoresActive] = useState(false)
+  const [isMateriaPrimaActive, setIsMateriaPrimaActive] = useState(false)
 
   useEffect(() => {
     // Lê do localStorage ao montar o componente
@@ -31,6 +36,7 @@ export default function Principal() {
     }
   }, [])
 
+  // eslint-disable-next-line no-unused-vars
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault() // Previne o envio padrão do formulário
 
@@ -91,6 +97,12 @@ export default function Principal() {
   }
 
   const toggleSubMenu_a = (menu: MenuKeys_a) => {
+    if (menu === 'fornecedores') {
+      setIsFornecedoresActive(!isFornecedoresActive)
+    }
+    if (menu === 'materiaPrima') {
+      setIsMateriaPrimaActive(!isMateriaPrimaActive)
+    }
     setopenSubMenus_a((prev) => ({
       ...prev,
       [menu]: !prev[menu],
@@ -173,25 +185,42 @@ export default function Principal() {
             style={{ listStyleType: 'none', padding: 0, fontSize: '0.875rem' }}
           >
             {/* *** Fornecedores *** */}
-            <li style={{ margin: '1rem 0' }}>
+            <li className="my-4">
               <div
                 onClick={() => toggleSubMenu_a('fornecedores')}
-                style={{ cursor: 'pointer', userSelect: 'none' }}
+                className={`cursor-pointer select-none p-1 rounded transition-border duration-300 ${
+                  isFornecedoresActive ? ' text-yellow-300 font-bold' : ''
+                }`}
+                // border-2 border-gray-300
+                //Explicação:
+                // cursor-pointer: Define o cursor como "pointer".
+                // select-none: Desativa a seleção de texto do conteúdo.
+                // p-1: Adiciona padding de 4px.
+                // rounded: Arredonda as bordas.
+                // transition-border duration-300: Aplica uma transição suave para a borda.
+                // border-2 border-gray-300: Aplica uma borda de 2px cinza claro se isFornecedoresActive for verdadeiro.
               >
                 Fornecedores
               </div>
+
               {openSubMenus_a.fornecedores && (
-                <ul
-                  style={{
-                    listStyleType: 'none',
-                    paddingLeft: '1rem',
-                    marginTop: '0.5rem',
-                  }}
-                >
-                  <li style={{ margin: '0.5rem 0' }}>
+                <ul className="list-none pl-4 mt-2">
+                  <li className="my-2">
                     <div
                       onClick={() => toggleSubMenu_a('materiaPrima')}
-                      style={{ cursor: 'pointer', userSelect: 'none' }}
+                      className={`cursor-pointer select-none p-1 rounded transition-border duration-300 ${
+                        isMateriaPrimaActive ? ' text-yellow-300 font-bold' : ''
+                      }`}
+                      // style={{
+                      //   cursor: 'pointer',
+                      //   userSelect: 'none',
+                      //   padding: '4px', // Adicionando padding para um melhor espaçamento
+                      //   border: isMateriaPrimaActive
+                      //     ? '2px solid #D1D5DB'
+                      //     : 'none', // Aplicando a borda cinza clara se ativo
+                      //   borderRadius: '4px', // Adicionando bordas arredondadas, se desejado
+                      //   transition: 'border 0.3s', // Transição suave para a borda
+                      // }}
                     >
                       Matéria Prima
                     </div>
@@ -199,14 +228,23 @@ export default function Principal() {
                       <ul className="list-none pl-4 mt-2">
                         <li className="my-2">
                           <Link href="/principal/materiaPrima">
-                            Novo Fornecedor
+                            {/* Novo Fornecedor */}
+                            <FaTools className="text-gray-100" />
                           </Link>
                         </li>
+
+                        {/* Renderiza a lista de fornecedores */}
                         {fornecedores.map((fornecedor, index) => (
                           <li key={index} className="my-2">
-                            {fornecedor}
-                          </li> // Renderiza a lista de fornecedores
+                            {/* <Link href={`/principal/allMateriaPrima`}> */}
+                            <Link href={`/principal/allMateriaPrima?fornecedor=${encodeURIComponent(fornecedor)}`}>
+                              {fornecedor}
+                            </Link>
+                          </li>
                         ))}
+
+                        <li className="my-2">Total Fornecedores</li>
+
                         {/*
                         <li className="my-2">Ferramentas do Projeto</li>
                         <li className="my-2">Fornecedor 1</li>
@@ -215,7 +253,6 @@ export default function Principal() {
                         <li className="my-2">Fornecedor 4</li>
                         <li className="my-2">Fornecedor 5</li>
                          */}
-                        <li className="my-2">Total Fornecedores</li>
                       </ul>
                     )}
                   </li>
@@ -344,6 +381,9 @@ export default function Principal() {
             <li style={{ margin: '1rem 0' }}>Impostos e Comissões</li>
             <li style={{ margin: '1rem 0' }}>Financiamentos</li>
             <li style={{ margin: '1rem 0' }}>Relatórios</li>
+            <li className="my-2 text-red-400 font-bold">
+              <Link href="/">Sair</Link>
+            </li>
           </ul>
         </nav>
 

@@ -41,7 +41,12 @@ export default function SignIn() {
 
   useEffect(() => {
     sessionStorage.clear();
-    localStorage.clear();
+    // localStorage.clear();
+    sessionStorage.setItem('token', '');
+    sessionStorage.setItem('name', '');
+    sessionStorage.setItem('nameTwo', '');
+    sessionStorage.setItem('userrole', '');
+    sessionStorage.setItem('userGender', '');
   }, []);
 
   const handleLogin = (e) => {
@@ -99,8 +104,8 @@ export default function SignIn() {
       <div className="flex w-full lg:w-[852px] justify-center items-center bg-[#F5F5F5] scale-[.80]">
         <div className="max-w-3xl mx-auto p-6">
           <div className="font-montserrat text-lg lg:hidden text-center mb-4 w-full bg-black text-white p-2 rounded font-semibold relative">Fábrica Próspera @2024</div>
-
-          <div className="font-semibold text-3xl">Entrar com login 1.10.4</div>
+{/* ------------------------------------------------------------------------ */}
+          <div className="font-semibold text-3xl">Entrar com login 1.10.5</div>
 
           <div className="text-base text-gray-600">Faça login na sua conta</div>
           <div className="mt-6 bg-white rounded-lg p-6">
@@ -110,7 +115,7 @@ export default function SignIn() {
                 <input
                   type="text"
                   id="email"
-                  placeholder="rodrigo.martins"
+                  placeholder="rodrigo.virgilio"
                   className="w-full h-12 px-4 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400"
                   value={username}
                   onChange={(e) => usernameUpdate(e.target.value)}
