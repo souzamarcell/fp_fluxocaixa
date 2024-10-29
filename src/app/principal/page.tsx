@@ -80,7 +80,12 @@ export default function Principal() {
       setIsLoading(false) // Token válido, podemos parar de carregar e mostrar a página
     } else {
       sessionStorage.clear()
-      localStorage.clear()
+      // localStorage.clear()
+      sessionStorage.setItem('token', '')
+      sessionStorage.setItem('name', '')
+      sessionStorage.setItem('nameTwo', '')
+      sessionStorage.setItem('userrole', '')
+      sessionStorage.setItem('userGender', '')
       console.log('Token inválido')
       router.push('/')
       toast.error('Favor fazer login!')
@@ -235,8 +240,15 @@ export default function Principal() {
                         {/* Renderiza a lista de fornecedores */}
                         {fornecedores.map((fornecedor, index) => (
                           <li key={index} className="my-2">
-                            {/* <Link href={`/principal/allMateriaPrima`}> */}
-                            <Link href={`/principal/allMateriaPrima?fornecedor=${encodeURIComponent(fornecedor)}`}>
+                            <Link
+                              href={`/principal/allMateriaPrima`}
+                              onClick={() =>
+                                sessionStorage.setItem(
+                                  'MateriaPrima',
+                                  fornecedor
+                                )
+                              }
+                            >
                               {fornecedor}
                             </Link>
                           </li>
