@@ -7,7 +7,6 @@ import Link from 'next/link'
 import { Header } from '@/components/header'
 import { FaTools } from 'react-icons/fa'
 
-
 type MenuKeys_a = 'fornecedores' | 'materiaPrima' | 'equipamento' | 'servicos'
 type MenuKeys_b = 'lancamentos'
 type MenuKeys_c = 'despesasCustos'
